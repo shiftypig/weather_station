@@ -1,4 +1,4 @@
-weather_station
+Weather Station
 ===============
 
-arduino weather station project
+Arduino weather station project.
