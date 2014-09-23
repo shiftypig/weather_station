@@ -4,6 +4,7 @@
 #include <Wire.h>
 #include <Adafruit_BMP085.h>
 #include <DHT.h>
+#include <RTClib.h>
 
 #define DHTPIN 8     // what pin we're connected to
 
@@ -48,7 +49,7 @@ void loop() {
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
   float h = dht.readHumidity();
   float th = dht.readTemperature();
-  float tp = bmp.readTemperature())
+  float tp = bmp.readTemperature();
   float t = (dht.readTemperature()+bmp.readTemperature())/2;
   float p = bmp.readPressure();
     Serial.print("Pressure = ");
