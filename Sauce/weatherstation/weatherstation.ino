@@ -18,6 +18,7 @@ Adafruit_BMP085 bmp;
 // Enter a MAC address and IP address for your controller below.
 byte mac[] = { 
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+IPAddress ip(10, 6, 0, 42);
   
 // Initialize the Ethernet server library
 // with the IP address and port you want to use 
@@ -38,7 +39,7 @@ void setup() {
   }
 
   // start the Ethernet connection and the server:
-  Ethernet.begin(mac);
+  Ethernet.begin(mac, ip);
   server.begin();
   Serial.print("server is at ");
   Serial.println(Ethernet.localIP());
@@ -90,19 +91,19 @@ void loop() {
         if (c == '\n' && currentLineIsBlank) {
         client.println();
           client.println ("{");
-          client.print("\"Humid. Temperature\": ");
+          client.print("\"HUMIDITY_TEMPERATURE_MONITOR\": ");
           client.print(th);
           client.println(",");
-          client.print("\"Press. Temperature\": ");
+          client.print("\"PRESSURE_TEMPERATURE_MONITOR\": ");
           client.print(tp);
           client.println(",");
-          client.print("\"Av. Temperature\": ");
+          client.print("\"TEMPERATURE_MONITOR\": ");
           client.print(t);
           client.println(",");
-          client.print("\"Humidity\": ");
+          client.print("\"HUMIDITY_MONITOR\": ");
           client.print(h);
           client.println(",");
-          client.print("\"Pressure\": ");
+          client.print("\"PRESSURE_MONITOR\": ");
           client.println(p);
           client.println("}");
           
