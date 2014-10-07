@@ -18,7 +18,8 @@ Adafruit_BMP085 bmp;
 // Enter a MAC address and IP address for your controller below.
 byte mac[] = { 
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-IPAddress ip(10, 6, 0, 42);
+//IPAddress ip(10, 6, 0, 42);
+IPAddress ip(10, 17, 7, 135);
   
 // Initialize the Ethernet server library
 // with the IP address and port you want to use 
@@ -89,7 +90,7 @@ void loop() {
         // character) and the line is blank, the http request has ended,
         // so you can send a reply
         if (c == '\n' && currentLineIsBlank) {
-        client.println();
+          client.println();
           client.println ("{");
           client.print("\"HUMIDITY_TEMPERATURE_MONITOR\": ");
           client.print(th);

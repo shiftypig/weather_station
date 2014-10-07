@@ -35,7 +35,7 @@ sensor_suffixes = pvdb.keys()
 pvdb.update({
     'HOST_SP' : {
         'type' : 'string',
-        'value' : '10.6.0.42',
+        'value' : '10.17.7.135',
     },
 })
 
@@ -45,16 +45,17 @@ class IOC(Driver):
         super(IOC, self).__init__()
         thread.start_new_thread(self.update,())
         self.read_error_processed = False
-        
+
     def update(self):
         while True:
             try:
                 url = 'http://{0}/'.format(self.getParam('HOST_SP'))
                 response = requests.get(url,timeout=1)
                 data = response.json()
-            except:
+            except Exception as error:
                 if not self.read_error_processed:
-                    for suffix in sensor_suffixes:                     
+                    for suffix in sensor_suffixes:
+                        print suffix, error
                         self.setParamStatus(suffix, Alarm.READ_ALARM, Severity.INVALID_ALARM)
                     self.updatePVs()
                     self.read_error_processed = True
@@ -63,15 +64,15 @@ class IOC(Driver):
                     self.setParam(suffix, data[suffix])
                 self.updatePVs()
                 self.read_error_processed = False
-                
+
             time.sleep(1)
-        
+
 if __name__ == '__main__':
     server = SimpleServer()
-    
+
     server.createPV(prefix, pvdb)
     driver = IOC()
-    
+
     while True:
         # process CA transactions
         server.process(0.1)
