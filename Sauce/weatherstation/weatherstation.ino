@@ -70,10 +70,10 @@ void loop() {
         if (c == '\n' && currentLineIsBlank) {
           client.println();
           client.println ("{");
-          client.print("\"HUMIDITY_TEMPERATURE_MONITOR\": ");
+          client.print("\"HUMIDITY_SENSOR_TEMPERATURE_MONITOR\": ");
           client.print(th);
           client.println(",");
-          client.print("\"PRESSURE_TEMPERATURE_MONITOR\": ");
+          client.print("\"PRESSURE_SENSOR_TEMPERATURE_MONITOR\": ");
           client.print(tp);
           client.println(",");
           client.print("\"TEMPERATURE_MONITOR\": ");

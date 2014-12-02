@@ -8,11 +8,11 @@ import thread
 prefix = 'SR00EMS01:'
 
 pvdb = {
-    'HMD_TEMPERATURE_MONITOR': {
+    'HUMIDITY_SENSOR_TEMPERATURE_MONITOR': {
         'type' : 'float',
         'unit' : 'C',
     },
-    'PRS_TEMPERATURE_MONITOR': {
+    'PRESSURE_SENSOR_TEMPERATURE_MONITOR': {
         'type' : 'float',
         'unit' : 'C',
     },
