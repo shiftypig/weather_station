@@ -5,14 +5,14 @@ import requests
 import time
 import thread
 
-prefix = 'WS01:'
+prefix = 'SR00EMS01:'
 
 pvdb = {
-    'HUMIDITY_TEMPERATURE_MONITOR': {
+    'HMD_TEMPERATURE_MONITOR': {
         'type' : 'float',
         'unit' : 'C',
     },
-    'PRESSURE_TEMPERATURE_MONITOR': {
+    'PRS_TEMPERATURE_MONITOR': {
         'type' : 'float',
         'unit' : 'C',
     },
@@ -35,7 +35,7 @@ sensor_suffixes = pvdb.keys()
 pvdb.update({
     'HOST_SP' : {
         'type' : 'string',
-        'value' : '10.17.7.135',
+        'value' : '10.17.20.11',
     },
 })
 

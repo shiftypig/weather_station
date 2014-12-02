@@ -19,7 +19,7 @@ Adafruit_BMP085 bmp;
 byte mac[] = { 
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 //IPAddress ip(10, 6, 0, 42);
-IPAddress ip(10, 17, 7, 135);
+IPAddress ip(10, 17, 20, 11);
   
 // Initialize the Ethernet server library
 // with the IP address and port you want to use 
@@ -54,29 +54,8 @@ void loop() {
   float tp = bmp.readTemperature();
   float t = (dht.readTemperature()+bmp.readTemperature())/2;
   float p = bmp.readPressure();
-    Serial.print("Pressure = ");
-    Serial.print(p);
-    Serial.print(" Pa");
-    Serial.print(" \t");
-  // check if returns are valid, if they are NaN (not a number) then something went wrong!
-  if (isnan(t) || isnan(h)) {
-    Serial.println("Failed to read from DHT");
-  } else {
-    Serial.print("Humidity: ");
-    Serial.print(h);
-    Serial.print(" %\t");
-    Serial.print("Humid. Temperature: ");
-    Serial.print(th);
-    Serial.println(" *C");
-    Serial.print("Press. Temperature 2: ");
-    Serial.print(tp);
-    Serial.println(" *C");
-    Serial.print("Av. Temperature: ");
-    Serial.print(t);
-    Serial.println(" *C");
-  }
-    wdt_reset();
-    delay(500);
+
+  wdt_reset();
  
   EthernetClient client = server.available();
   if (client) {
@@ -85,7 +64,6 @@ void loop() {
     while (client.connected()) {
       if (client.available()) {
         char c = client.read();
-        Serial.write(c);
         // if you've gotten to the end of the line (received a newline
         // character) and the line is blank, the http request has ended,
         // so you can send a reply
