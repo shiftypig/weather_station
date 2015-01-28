@@ -62,6 +62,7 @@ class IOC(Driver):
             else:
                 for suffix in sensor_suffixes:
                     self.setParam(suffix, data[suffix])
+                    self.setParamStatus(suffix, Alarm.NO_ALARM, Severity.NO_ALARM)
                 self.updatePVs()
                 self.read_error_processed = False
 
